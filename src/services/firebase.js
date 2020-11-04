@@ -4,4 +4,4 @@ import config from "config";
 
 firebase.initializeApp(config.firebase);
 
-export default firebase.database();
+export const db = firebase.database();

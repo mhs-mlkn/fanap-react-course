@@ -49,9 +49,3 @@ export default function AddArticle() {
     </Grid>
   );
 }
-
-function validation(data) {
-  return true;
-}
-
-export default withForm({ initilas: {}, validation })(AddArticle);

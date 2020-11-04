@@ -1,6 +1,6 @@
-import { firebase } from "utils";
+import * as firebase from "services";
 
-const db = firebase.ref("/articles");
+const db = firebase.db.ref("/articles");
 
 class ArticleService {
   getAll() {
