@@ -1,24 +1,24 @@
 import React from "react";
+import { ToastContainer } from "react-toastify";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import Container from "@material-ui/core/Container";
-import TopBar from "components/TopBar";
-import Articles from "pages/Articles";
-import AddArticle from "pages/AddArticle";
+import Signin from "pages/Signin";
+import Signup from "pages/Signup";
+import Main from "components/Main";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function App() {
   return (
-    <React.Fragment>
+    <>
       <CssBaseline />
+      <ToastContainer />
       <Router>
-        <TopBar />
-        <Container maxWidth="lg">
-          <Switch>
-            <Route exact path={["/", "/articles"]} component={Articles} />
-            <Route exact path="/add" component={AddArticle} />
-          </Switch>
-        </Container>
+        <Switch>
+          <Route exact path="/signin" component={Signin} />
+          <Route exact path="/signup" component={Signup} />
+          <Route component={Main} />
+        </Switch>
       </Router>
-    </React.Fragment>
+    </>
   );
 }
