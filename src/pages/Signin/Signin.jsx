@@ -9,7 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Button from "components/Button";
-import { signin } from "services";
+import { useAuth } from "providers/auth";
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -36,6 +36,7 @@ export default function SignIn() {
   const history = useHistory();
   const [state, setState] = React.useState({ email: "", password: "" });
   const [loading, setLoading] = React.useState(false);
+  const { signIn } = useAuth();
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -46,10 +47,12 @@ export default function SignIn() {
     e.preventDefault();
     setLoading(true);
     const { email, password } = state;
-    signin(email, password)
-      .catch(error => toast.error(error.message))
+    signIn(email, password)
       .then(() => history.replace("/"))
-      .finally(() => setLoading(false));
+      .catch(error => {
+        setLoading(false);
+        toast.error(error.message);
+      });
   };
 
   return (

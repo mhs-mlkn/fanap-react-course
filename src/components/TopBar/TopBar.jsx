@@ -9,7 +9,7 @@ import IconButton from "@material-ui/core/IconButton";
 import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import Button from "@material-ui/core/Button";
-import { auth, signOut } from "services";
+import { useAuth } from "providers/auth";
 
 const useStyles = makeStyles(theme => ({
   toolbar: {
@@ -25,17 +25,17 @@ const useStyles = makeStyles(theme => ({
 
 export default function TopBar() {
   const classes = useStyles();
-  const [user, setUser] = React.useState(null);
+  const { user, signOut } = useAuth();
 
-  React.useEffect(() => {
-    auth.onAuthStateChanged(function (u) {
-      if (u) {
-        setUser(u);
-      } else {
-        setUser(null);
-      }
-    });
-  }, []);
+  // React.useEffect(() => {
+  //   auth.onAuthStateChanged(function (u) {
+  //     if (u) {
+  //       setUser(u);
+  //     } else {
+  //       setUser(null);
+  //     }
+  //   });
+  // }, []);
 
   return (
     <AppBar position="relative" color="default">
